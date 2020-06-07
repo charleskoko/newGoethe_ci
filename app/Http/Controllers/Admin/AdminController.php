@@ -21,6 +21,11 @@ class AdminController extends Controller
         ]);
     }
 
+    public function create ()
+    {
+        return view('admin.create');
+    }
+
     public function update(Request $request, User $user)
     {
 

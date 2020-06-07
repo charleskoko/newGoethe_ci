@@ -22,7 +22,7 @@
 
                         </div>
                         <div class="float-right">
-                            <button type="button" class="btn btn-primary">Add New User</button>
+                            <a type="button" href="{{route('user-create')}}" class="btn btn-primary">Add New User</a>
                         </div>
                     </div>
                     <table class="table">
