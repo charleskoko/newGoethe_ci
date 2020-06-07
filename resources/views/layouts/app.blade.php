@@ -127,7 +127,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 src="images/wo.jpg"></a>
                         <ul class="dropdown-menu " role="menu">
                             <li><a href="{{route('profile-view')}}"><i class="fa fa-user"></i>Profile</a></li>
-                            <li><a href="inbox.html"><i class="fas fa-users-cog"></i>User panel</a></li>
+                            @can('isAdmin', App\User::class)
+                            <li><a href="{{route('user-panel')}}"><i class="fas fa-users-cog"></i>User panel</a></li>
+                            @endcan
                             <li><a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -152,7 +154,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                         <li>
                             <a href="{{route('home')}}" class=" hvr-bounce-to-right"><i
-                                    class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboards</span> </a>
+                                    class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboard</span> </a>
                         </li>
 
                         <li>

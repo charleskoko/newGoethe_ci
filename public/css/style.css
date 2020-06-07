@@ -1798,6 +1798,10 @@ td span.mar{
 	background: #1ABC9C;
 }
 
+td span.adm{
+    background: #b13030;
+}
+
 .compose h2{
 	font-size: 1.2em;
     color: #fff;

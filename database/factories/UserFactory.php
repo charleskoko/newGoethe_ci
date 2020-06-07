@@ -18,8 +18,13 @@ use Illuminate\Support\Str;
 */
 
 $factory->define(User::class, function (Faker $faker) {
+    $genderArray = [User::GENDER_MALE, User::GENDER_FEMALE, User::GENDER_DIVERS];
+    $adminArray = [User::USER_ADMIN, User::USER_NOADMIN];
     return [
-        'name' => $faker->name,
+        'gender' => $genderArray[array_rand($genderArray)],
+        'is_admin' => $adminArray[array_rand($adminArray)],
+        'firstName' => $faker->firstName,
+        'lastName' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
         'email_verified_at' => now(),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

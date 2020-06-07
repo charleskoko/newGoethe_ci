@@ -47,6 +47,7 @@ class RouteServiceProvider extends ServiceProvider
 
         //
         $this->profileRoutes();
+        $this->adminRoutes();
     }
 
     /**
@@ -87,5 +88,16 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/profile.php'));
+    }
+
+    /**
+     *
+     */
+    protected function adminRoutes()
+    {
+        Route::prefix('admin')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admin.php'));
     }
 }
