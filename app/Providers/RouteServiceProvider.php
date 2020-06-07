@@ -43,10 +43,10 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapApiRoutes();
-
         $this->mapWebRoutes();
 
         //
+        $this->profileRoutes();
     }
 
     /**
@@ -76,5 +76,16 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('api')
             ->namespace($this->namespace)
             ->group(base_path('routes/api.php'));
+    }
+
+    /**
+     *
+     */
+    protected function profileRoutes()
+    {
+        Route::prefix('profile')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/profile.php'));
     }
 }

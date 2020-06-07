@@ -4,6 +4,7 @@
     <div class="login">
         <div class="login-bottom">
             <h2>Login</h2>
+
             <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="col-md-6">

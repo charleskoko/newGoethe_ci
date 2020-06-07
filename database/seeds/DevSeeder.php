@@ -16,7 +16,10 @@ class DevSeeder extends Seeder
     {
        $charlesKoko = new User([
            'id' => str::uuid(),
-           'name' => 'Charles Koko',
+           'gender' => User::GENDER_MALE,
+           'is_admin' => true,
+           'firstName' => 'Charles',
+           'lastName' => 'Koko',
            'email' => 'jephtekoko@gmail.com',
            'email_verified_at' => now(),
            'password' => Hash::make('ck_12345678!') ,
