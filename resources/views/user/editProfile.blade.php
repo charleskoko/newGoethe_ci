@@ -3,12 +3,12 @@
     <!--banner-->
     <div class="banner">
         <h2>
-            <a href="{{route('home')}}">Home</a><i class="fa fa-angle-right"></i><span>Edit Profile</span>
+            <a href="{{route('home')}}">Home</a><i class="fa fa-angle-right"></i> <a href="{{route('home')}}">Profile</a> <i class="fa fa-angle-right"></i><span>Edit Profile</span>
         </h2>
     </div>
     <!--//banner-->
-    <!--grid-->
-    <div class="validation-system">
+    <!--gallery-->
+    <div class=" profile">
 
         <div class="validation-form">
             <!---->
@@ -69,8 +69,12 @@
 
         </div>
     </div>
+
     </div>
-    <div class="clearfix"></div>
+    <!--//gallery-->
+    <!---->
+    </div>
+    <div class="clearfix"> </div>
     </div>
 @endsection
 

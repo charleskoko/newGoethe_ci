@@ -3,7 +3,7 @@
             <!--banner-->
             <div class="banner">
                 <h2>
-                    <a href="index.html">Home</a>
+                    <a href="{{route('home')}}">Home</a>
                     <i class="fa fa-angle-right"></i>
                     <span>Profile</span>
                 </h2>
