@@ -13,9 +13,8 @@
         <div class="validation-form">
             <!---->
 
-            <form enctype="multipart/form-data" method="POST" novalidate action="{{route('profile-update')}}">
+            <form enctype="multipart/form-data" method="POST" novalidate action="{{route('user-save')}}">
                 @csrf
-                @method('PATCH')
 
                 <div class="vali-form">
                     <div class="col-md-12 form-group2 group-mail ">
@@ -50,7 +49,7 @@
 
                 <div class="col-md-12 form-group2 group-mail ">
                     <label class="control-label">{{__('user.role')}}</label>
-                    <select id="gender" name="gender">
+                    <select id="is_admin" name="is_admin">
                         <option value="{{\App\User::USER_ADMIN}}">Admin</option>
                         <option value="{{\App\User::USER_ADMIN}}" >Coworker</option>
                     </select>
@@ -78,7 +77,7 @@
                 </div>
 
                 <div class="col-md-12 form-group1 group-mail">
-                    <label class="control-label" for="password_confirmation">{{__('user.email')}}</label>
+                    <label class="control-label" for="password_confirmation">{{__('user.confirm')}}</label>
                     <input type="password" class="@error('email') is-invalid @enderror" name="password_confirmation" id="password_confirmation" required="">
                     @error('password_confirmation')
                     <span class="invalid-feedback" role="alert">

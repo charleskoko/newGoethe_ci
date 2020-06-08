@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
@@ -16,8 +17,8 @@ class AdminController extends Controller
     public function edit(User $user)
     {
         return view('admin.edit', [
-            'user' => Auth::user(),
-            'title' => trans('titles.user.edit', ['data' => Auth::user()->email])
+            'user' => $user,
+            'title' => trans('titles.user.edit', ['data' => $user->email])
         ]);
     }
 
@@ -25,6 +26,27 @@ class AdminController extends Controller
     {
         return view('admin.create');
     }
+
+    public function save(Request $request)
+    {
+
+        $validatedData = $request->validate([
+            'gender' => 'required |in:'.implode(',', [User::GENDER_DIVERS, User::GENDER_FEMALE, User::GENDER_MALE]),
+            'firstName' => 'required | string| max:255',
+            'lastName' => 'required | string| max:255',
+            'email' => 'required | string | email | max:255 | unique:users',
+            'is_admin' => 'required | in:'.implode(',',[User::USER_ADMIN, User::USER_NOADMIN]),
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        $validatedData['password'] = Hash::make($validatedData['password']);
+
+        User::create($validatedData);
+
+        return redirect(route('user-panel'));
+
+    }
+
 
     public function update(Request $request, User $user)
     {
@@ -38,12 +60,14 @@ class AdminController extends Controller
 
         $user->update($validatedData);
 
-        return redirect(route('profile-view'));
+        return redirect(route('user-panel'));
 
     }
 
     public function delete(User $user)
     {
+        dd($user);
+
         $user->delete();
     }
 }
