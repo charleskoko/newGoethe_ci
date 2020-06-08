@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+App::setLocale('fr');
 Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -3,7 +3,7 @@
     <!--banner-->
     <div class="banner">
         <h2>
-            <a href="{{route('home')}}">Home</a><i class="fa fa-angle-right"></i> <a href="{{route('user-panel')}}">User Panel</a> <i class="fa fa-angle-right"></i><span>Add New User</span>
+            <a href="{{route('home')}}">{{__('user.Dashboard')}}</a><i class="fa fa-angle-right"></i> <a href="{{route('user-panel')}}">{{__('user.user_panel')}}</a> <i class="fa fa-angle-right"></i><span>{{__('user.add_new_user')}}</span>
         </h2>
     </div>
     <!--//banner-->
@@ -20,9 +20,9 @@
                     <div class="col-md-12 form-group2 group-mail ">
                         <label class="control-label">{{__('user.gender')}}</label>
                         <select id="gender" name="gender">
-                            <option value="{{\App\User::GENDER_MALE}}">{{__('user.')}}{{\App\User::GENDER_MALE}}</option>
-                            <option value="{{\App\User::GENDER_FEMALE}}" >{{__('user.')}}{{\App\User::GENDER_FEMALE}}</option>
-                            <option value="{{\App\User::GENDER_DIVERS}}">{{__('user.')}}{{\App\User::GENDER_DIVERS}}</option>
+                            <option value="{{\App\User::GENDER_MALE}}">{{__('user.'.\App\User::GENDER_MALE)}}</option>
+                            <option value="{{\App\User::GENDER_FEMALE}}" >{{__('user.'.\App\User::GENDER_FEMALE)}}</option>
+                            <option value="{{\App\User::GENDER_DIVERS}}">{{__('user.'.\App\User::GENDER_DIVERS)}}</option>
                         </select>
                     </div>
                     <div class="clearfix"></div>
@@ -51,7 +51,7 @@
                     <label class="control-label">{{__('user.role')}}</label>
                     <select id="is_admin" name="is_admin">
                         <option value="{{\App\User::USER_ADMIN}}">Admin</option>
-                        <option value="{{\App\User::USER_ADMIN}}" >Coworker</option>
+                        <option value="{{\App\User::USER_NOADMIN}}" >Coworker</option>
                     </select>
                 </div>
                 <div class="clearfix"></div>
@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="col-md-12 form-group1 group-mail">
-                    <label class="control-label" for="password_confirmation">{{__('user.confirm')}}</label>
+                    <label class="control-label" for="password_confirmation">{{__('user.password_confirmation')}}</label>
                     <input type="password" class="@error('email') is-invalid @enderror" name="password_confirmation" id="password_confirmation" required="">
                     @error('password_confirmation')
                     <span class="invalid-feedback" role="alert">
@@ -89,8 +89,8 @@
                 <div class="clearfix"></div>
 
                 <div class="col-md-12 form-group">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="reset" class="btn btn-default">Reset</button>
+                    <button type="submit" class="btn btn-primary">{{__('user.Submit')}}</button>
+                    <button type="reset" class="btn btn-default">{{__('user.Cancel')}}</button>
                 </div>
                 <div class="clearfix"></div>
             </form>

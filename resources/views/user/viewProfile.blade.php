@@ -3,9 +3,9 @@
             <!--banner-->
             <div class="banner">
                 <h2>
-                    <a href="{{route('home')}}">Home</a>
+                    <a href="{{route('home')}}">{{__('user.Dashboard')}}</a>
                     <i class="fa fa-angle-right"></i>
-                    <span>Profile</span>
+                    <span>{{__('user.profile')}}</span>
                 </h2>
             </div>
             <!--//banner-->
@@ -36,16 +36,21 @@
                                     <td> :</td>
                                     <td><a href="info@gmail.com">{{\Illuminate\Support\Facades\Auth::user()->email}}</a></td>
                                 </tr>
+                                <tr>
+                                    <td>{{__('user.role')}}</td>
+                                    <td> :</td>
+                                    <td>@if(\Illuminate\Support\Facades\Auth::user()->is_admin === true)<span class="adm">{{__('user.Admin')}}</span> @else <span class="mar">{{__('user.Coworker')}}</span> @endif
+                                    </td>
+                                </tr>
                             </table>
                         </div>
                         <div class="clearfix"></div>
                     </div>
-                    <div class="profile-btn">
 
-                        <button type="button" href="{{route('profile-edit')}}" class="btn bg-red"><a href="{{route('profile-edit')}}">{{__('user.edit_profile')}}</a></button>
+                    <div class="profile-btn">
+                        <a type="button" href="{{route('profile-edit')}}" class="btn btn-primary">{{__('user.edit_profile')}}</a>
                         <div class="clearfix"></div>
                     </div>
-
                 </div>
             </div>
             <!--//gallery-->

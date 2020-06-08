@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\NewUserCreatedEvent;
 use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
@@ -41,10 +43,11 @@ class AdminController extends Controller
 
         $validatedData['password'] = Hash::make($validatedData['password']);
 
-        User::create($validatedData);
+        $user = User::create($validatedData);
+
+        event(new NewUserCreatedEvent($user, Auth::user()));
 
         return redirect(route('user-panel'));
-
     }
 
 
@@ -56,6 +59,7 @@ class AdminController extends Controller
             'firstName' => 'required | string| max:255',
             'lastName' => 'required | string| max:255',
             'email' => 'required | string | email | max:255 | unique:users,email,' . $user->id,
+            'is_admin' => 'required | in:'.implode(',',[User::USER_ADMIN, User::USER_NOADMIN]),
         ]);
 
         $user->update($validatedData);
@@ -66,8 +70,8 @@ class AdminController extends Controller
 
     public function delete(User $user)
     {
-        dd($user);
-
         $user->delete();
+
+        return redirect(route('user-panel'));
     }
 }

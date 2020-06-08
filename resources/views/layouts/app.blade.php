@@ -126,15 +126,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                 class=" name-caret">{{ Auth::user()->getNormalName() }}<i class="caret"></i></span><img
                                 src="images/wo.jpg"></a>
                         <ul class="dropdown-menu " role="menu">
-                            <li><a href="{{route('profile-view')}}"><i class="fa fa-user"></i>Profile</a></li>
+                            <li><a href="{{route('profile-view')}}"><i class="fa fa-user"></i>{{__('user.profile')}}</a></li>
                             @can('isAdmin', App\User::class)
-                            <li><a href="{{route('user-panel')}}"><i class="fas fa-users-cog"></i>User panel</a></li>
+                            <li><a href="{{route('user-panel')}}"><i class="fas fa-users-cog"></i>{{__('user.user__panel')}}</a></li>
                             @endcan
                             <li><a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     <i class="fas fa-sign-in-alt"></i>
-                                    {{ __('Logout') }}
+                                    {{ __('user.logout') }}
                                 </a></li>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf

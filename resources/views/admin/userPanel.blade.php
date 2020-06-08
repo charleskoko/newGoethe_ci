@@ -3,8 +3,9 @@
     <!--banner-->
     <div class="banner">
         <h2>
-            <a href="{{route('home')}}">Dashboard</a><i class="fa fa-angle-right"></i> <span> User panel</span>
+            <a href="{{route('home')}}">Dashboard</a><i class="fa fa-angle-right"></i> <span>{{__('user.user_panel')}}</span>
         </h2>
+
     </div>
     <!--//banner-->
     <!--gallery-->
@@ -17,12 +18,12 @@
                     <div class="mail-toolbar clearfix">
                         <div class="float-left">
                             <div class="btn-group m-r-sm mail-hidden-options" style="display: inline-block;">
-                            USERS - OVERVIEW
+                                <div style="text-transform: uppercase">{{__('user.users_overview')}}</div>
                             </div>
 
                         </div>
                         <div class="float-right">
-                            <a type="button" href="{{route('user-create')}}" class="btn btn-primary">Add New User</a>
+                            <a type="button" href="{{route('user-create')}}" class="btn btn-primary">{{__('user.add_new_user')}}</a>
                         </div>
                     </div>
                     <table class="table">
@@ -34,7 +35,7 @@
                                     <p>{{$user->email}}</p>
                                 </td>
                                 <td>
-                                    @if($user->is_admin === true)<span class="adm">Admin</span> @else <span class="mar">Coworker</span> @endif
+                                    @if($user->is_admin === true)<span class="adm">{{__('user.Admin')}}</span> @else <span class="mar">{{__('user.Coworker')}}</span> @endif
                                 </td>
                                 <td class="march">
                                     {{$user->gender}}
@@ -47,16 +48,21 @@
                                                 class="fas fa-cog"></i></a>
                                         <ul class="dropdown-menu dropdown-menu-right" role="menu">
                                             <li>
-                                                <a href="{{route('user-edit', ['user' => $user])}}" title="">
+                                                <a href="{{route('user-edit', ['user' => $user])}}">
                                                     <i class="fa fa-pencil-square-o icon_9"></i>
-                                                    Edit
+                                                    {{__('user.Edit')}}
                                                 </a>
                                             </li>
 
                                             <li>
-                                                <a href="{{route('user-delete', ['user' => $user])}}" class="font-red" title="">
+                                                <form id="user-delete-{{$user->id}}" method="post" action="{{route('user-delete', ['user' => $user])}}">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                </form>
+                                                <a href="{{route('user-delete', ['user' => $user])}}" onclick="event.preventDefault(); if(confirm('{{__('user.userDeleteMessage')}} - {{$user->getNormalName()}}'))
+                                                    {document.getElementById('user-delete-{{$user->id}}').submit();}">
                                                     <i class="fa fa-times" icon_9=""></i>
-                                                    Delete
+                                                    {{__('user.Delete')}}
                                                 </a>
                                             </li>
                                         </ul>

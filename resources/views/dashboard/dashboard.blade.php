@@ -3,7 +3,7 @@
     <!--banner-->
     <div class="banner">
         <h2>
-            <a href="{{route('home')}}">Dashboard</a>
+            <a href="{{route('home')}}">{{__('user.Dashboard')}}</a>
         </h2>
     </div>
     <!--//banner-->

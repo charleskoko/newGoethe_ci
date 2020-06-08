@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -25,6 +26,11 @@ class ProfileController extends Controller
             ]);
     }
 
+    public function newPassword(User $user)
+    {
+        return view('user.newPassword', ['user' => $user]);
+    }
+
     public function update(Request $request)
     {
         $user = Auth::user();
@@ -35,6 +41,15 @@ class ProfileController extends Controller
             'lastName' => 'required | string| max:255',
             'email' => 'required | string | email | max:255 | unique:users,email,' . $user->id,
         ]);
+
+        if ($request->filled('password')){
+            $newPassword = $request->validate([
+                'password' => 'required | string | min:8 |confirmed',
+            ]);
+
+            $validatedData['password'] = Hash::make($newPassword['password']);
+
+        }
 
         $user->update($validatedData);
 

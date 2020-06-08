@@ -3,7 +3,7 @@
     <!--banner-->
     <div class="banner">
         <h2>
-            <a href="{{route('home')}}">Home</a><i class="fa fa-angle-right"></i> <a href="{{route('home')}}">Profile</a> <i class="fa fa-angle-right"></i><span>Edit Profile</span>
+            <a href="{{route('home')}}">{{__('user.Dashboard')}}</a><i class="fa fa-angle-right"></i> <a href="{{route('home')}}">{{__('user.profile')}}</a> <i class="fa fa-angle-right"></i><span>{{__('user.edit_profile')}}</span>
         </h2>
     </div>
     <!--//banner-->
@@ -57,12 +57,33 @@
                                     </span>
                     @enderror
                 </div>
+
+                <div class="col-md-12 form-group1 group-mail">
+                    <label class="control-label" for="password">{{__('user.password')}}</label>
+                    <input type="password" class="@error('password') is-invalid @enderror" name="password" id="password">
+                    @error('password')
+                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror
+                </div>
+
+                <div class="col-md-12 form-group1 group-mail">
+                    <label class="control-label" for="password_confirmation">{{__('user.password_confirmation')}}</label>
+                    <input type="text" class="@error('password_confirmation') is-invalid @enderror" name="password_confirmation" id="password_confirmation">
+                    @error('password_confirmation')
+                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                    @enderror
+                </div>
+
                 <div class="clearfix"></div>
                 <div class="clearfix"></div>
 
                 <div class="col-md-12 form-group">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    <button type="reset" class="btn btn-default">Reset</button>
+                    <button type="submit" class="btn btn-primary">{{__('user.Submit')}}</button>
+                    <a href="{{route('profile-view')}}" class="btn btn-default">{{__('user.Cancel')}}</a>
                 </div>
                 <div class="clearfix"></div>
             </form>
