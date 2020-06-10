@@ -65,7 +65,6 @@ class AdminController extends Controller
         $user->update($validatedData);
 
         return redirect(route('user-panel'));
-
     }
 
     public function delete(User $user)

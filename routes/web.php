@@ -21,3 +21,5 @@ Auth::routes();
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/push','PushController@store');
+Route::get('/push','PushController@push')->name('push');

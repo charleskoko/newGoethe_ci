@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\LoanRequest;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard.dashboard');
+        return view('dashboard.dashboard', [
+            'loanRequests' => LoanRequest::where('status', '=', LoanRequest::STATUS_NEW)->orderBy('created_at', 'desc')->paginate(15)
+        ]);
     }
 }

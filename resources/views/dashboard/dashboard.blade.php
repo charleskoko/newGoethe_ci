@@ -16,6 +16,8 @@
                     <div class="col-md-6 top-content">
                         <h5>Tasks</h5>
                         <label>8761</label>
+                        <a href="{{route('push')}}" class="btn btn-outline-primary btn-block">Make a Push Notification!</a>
+
                     </div>
                     <div class="col-md-6 top-content1">
                         <div id="demo-pie-1" class="pie-title-center" data-percent="25"><span
@@ -42,122 +44,57 @@
 
                                 </div>
                                 <div class="float-right">
-                                    <div class="btn-group">
-                                        <a class="btn btn-default"><i class="fa fa-angle-left"></i></a>
-                                        <a class="btn btn-default"><i class="fa fa-angle-right"></i></a>
+                                    <div class="float-right">
+                                        {{$loanRequests->links('pagination.pagination')}}
                                     </div>
-
-
                                 </div>
 
                             </div>
-                            <table class="table">
+                            <table class="table" id="table">
                                 <tbody>
-                                <tr class="table-row">
-                                    <td class="table-text">
-                                        <h6> Lorem ipsum</h6>
-                                        <p>Nullam quis risus eget urna mollis ornare vel eu leo</p>
-                                    </td>
-                                    <td>
-                                        <span class="fam">Family</span>
-                                    </td>
-                                    <td class="march">
-                                        in 5 days
-                                    </td>
-                                </tr>
-                                <tr class="table-row">
-                                    <td class="table-text">
-                                        <h6> Lorem ipsum</h6>
-                                        <p>Nullam quis risus eget urna mollis ornare vel eu leo</p>
-                                    </td>
-                                    <td>
-                                        <span class="mar">Market</span>
-                                    </td>
-                                    <td class="march">
-                                        in 5 days
-                                    </td>
+                                @foreach($loanRequests as $loanRequest)
+                                    <tr class="table-row">
+                                        <td class="table-text">
+                                            <h6> {{$loanRequest->firstName}} {{$loanRequest->lastName}}</h6>
+                                            <p>{{$loanRequest->start}} - {{$loanRequest->end}}</p>
+                                        </td>
+                                        <td>
+                                            <span class="mar">{{__('loanRequest.new')}}</span>
+                                        </td>
+                                        <td class="march">
+                                            {{$loanRequest->numberOfCopies}} {{__('loanRequest.copies')}}
+                                        </td>
 
-                                </tr>
-                                <tr class="table-row">
-                                    <td class="table-text">
-                                        <h6> Lorem ipsum</h6>
-                                        <p>Nullam quis risus eget urna mollis ornare vel eu leo</p>
-                                    </td>
-                                    <td>
-                                        <span class="work">work</span>
-                                    </td>
-                                    <td class="march">
-                                        in 5 days
-                                    </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i
+                                                        class="fas fa-cog"></i></a>
+                                                <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                                                    <li>
+                                                        <a href="{{route('loanRequest-edit', ['loanRequest' => $loanRequest])}}">
+                                                            <i class="fa fa-pencil-square-o icon_9"></i>
+                                                            {{__('loanRequest.Edit')}}
+                                                        </a>
+                                                    </li>
 
-                                </tr>
-                                <tr class="table-row">
-                                    <td class="table-text">
-                                        <h6> Lorem ipsum</h6>
-                                        <p>Nullam quis risus eget urna mollis ornare vel eu leo</p>
-                                    </td>
-                                    <td>
-                                        <span class="fam">Family</span>
-                                    </td>
-                                    <td class="march">
-                                        in 4 days
-                                    </td>
-
-                                </tr>
-                                <tr class="table-row">
-                                    <td class="table-text">
-                                        <h6> Lorem ipsum</h6>
-                                        <p>Nullam quis risus eget urna mollis ornare vel eu leo</p>
-                                    </td>
-                                    <td>
-                                        <span class="ur">urgent</span>
-                                    </td>
-                                    <td class="march">
-                                        in 4 days
-                                    </td>
-
-                                </tr>
-                                <tr class="table-row">
-                                    <td class="table-text">
-                                        <h6> Lorem ipsum</h6>
-                                        <p>Nullam quis risus eget urna mollis ornare vel eu leo</p>
-                                    </td>
-                                    <td>
-
-                                    </td>
-                                    <td class="march">
-                                        in 3 days
-                                    </td>
-
-                                </tr>
-                                <tr class="table-row">
-
-                                    <td class="table-text">
-                                        <h6> Lorem ipsum</h6>
-                                        <p>Nullam quis risus eget urna mollis ornare vel eu leo</p>
-                                    </td>
-                                    <td>
-                                        <span class="fam">Family</span>
-                                    </td>
-                                    <td class="march">
-                                        in 2 days
-                                    </td>
-
-                                </tr>
-                                <tr class="table-row">
-                                    <td class="table-text">
-                                        <h6> Lorem ipsum</h6>
-                                        <p>Nullam quis risus eget urna mollis ornare vel eu leo</p>
-                                    </td>
-                                    <td>
-                                        <span class="ur">urgent</span>
-                                    </td>
-                                    <td class="march">
-                                        in 2 days
-                                    </td>
-
-                                </tr>
-
+                                                    <li>
+                                                        <form id="user-delete-{{$loanRequest->id}}" method="post"
+                                                              action="{{route('loanRequest-delete', ['loanRequest' => $loanRequest])}}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
+                                                        <a href="{{route('loanRequest-delete', ['loanRequest' => $loanRequest])}}"
+                                                           onclick="event.preventDefault(); if(confirm('{{__('loanRequest.movieDeleteMessage')}} - {{$loanRequest->email}}'))
+                                                               {document.getElementById('loanRequest-delete-{{$loanRequest->id}}').submit();}">
+                                                            <i class="fa fa-times" icon_9=""></i>
+                                                            {{__('loanRequest.Delete')}}
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                         </div>

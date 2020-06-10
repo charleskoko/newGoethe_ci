@@ -42,7 +42,6 @@
                                 </td>
 
                                 <td>
-
                                     <div class="btn-group">
                                         <a class="btn btn-default dropdown-toggle" data-toggle="dropdown"><i
                                                 class="fas fa-cog"></i></a>

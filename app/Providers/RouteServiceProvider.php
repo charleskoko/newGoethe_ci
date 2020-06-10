@@ -48,6 +48,10 @@ class RouteServiceProvider extends ServiceProvider
         //
         $this->profileRoutes();
         $this->adminRoutes();
+
+        //
+        $this->movieRoutes();
+        $this->loanRequestRoutes();
     }
 
     /**
@@ -99,5 +103,27 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/admin.php'));
+    }
+
+    /**
+     *
+     */
+    protected function movieRoutes()
+    {
+        Route::prefix('movie')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/movie.php'));
+    }
+
+    /**
+     *
+     */
+    protected function loanRequestRoutes()
+    {
+        Route::prefix('loan_request')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/loanRequest.php'));
     }
 }
