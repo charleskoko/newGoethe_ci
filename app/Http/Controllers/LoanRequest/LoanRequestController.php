@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\LoanRequest;
 
+use App\Events\NewLoanRequestEvent;
 use App\Http\Controllers\Controller;
 use App\LoanRequest;
 use Illuminate\Http\Request;
@@ -34,7 +35,7 @@ class LoanRequestController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function save(Request $request)
     {
@@ -53,6 +54,8 @@ class LoanRequestController extends Controller
         $validatedData['status'] = LoanRequest::STATUS_NEW;
 
         $loanRequest = LoanRequest::create($validatedData);
+
+        event(new NewLoanRequestEvent($loanRequest));
 
         return redirect(route('loanRequest'));
 

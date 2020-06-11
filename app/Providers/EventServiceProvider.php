@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Events\NewLoanRequestEvent;
 use App\Events\NewUserCreatedEvent;
+use App\Listeners\newLoanRequestListener;
 use App\Listeners\NewUserCreatedListener;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -17,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
         NewUserCreatedEvent::class => [
             NewUserCreatedListener::class
         ],
+        NewLoanRequestEvent::class => [
+            newLoanRequestListener::class
+        ]
     ];
 
     /**
