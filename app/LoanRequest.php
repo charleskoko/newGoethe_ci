@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Traits\Uuids;
+use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use NotificationChannels\WebPush\HasPushSubscriptions;
 
@@ -10,6 +11,7 @@ class LoanRequest extends Model
 {
     use Uuids;
     use HasPushSubscriptions;
+    use Filterable;
 
     public $incrementing = false;
 

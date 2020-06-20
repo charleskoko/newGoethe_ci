@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         NotificationChannels\WebPush\WebPushServiceProvider::class,
+        EloquentFilter\ServiceProvider::class,
 
 
         /*

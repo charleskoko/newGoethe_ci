@@ -47,7 +47,8 @@ class AdminController extends Controller
 
         event(new NewUserCreatedEvent($user, Auth::user()));
 
-        return redirect(route('user-panel'));
+        return redirect(route('user-panel'))->with('toast_success',
+            trans('translate.new_user_created', ['data' => $user->email]));
     }
 
 
@@ -64,7 +65,8 @@ class AdminController extends Controller
 
         $user->update($validatedData);
 
-        return redirect(route('user-panel'));
+        return redirect(route('user-panel'))->with('toast_success',
+            trans('translate.user_updated', ['data' => $user->email]));
     }
 
     public function delete(User $user)

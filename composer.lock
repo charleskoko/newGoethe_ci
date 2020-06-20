@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "51748ecd53dbe06bfa67f133a5b7ac62",
+    "content-hash": "46c503787c3262266c2993e464605417",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2309,6 +2309,72 @@
             "time": "2020-03-29T20:13:32+00:00"
         },
         {
+            "name": "realrashid/sweet-alert",
+            "version": "v3.1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/realrashid/sweet-alert.git",
+                "reference": "b72e2b41b5295be5bae5c54dbab851696fef196a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/realrashid/sweet-alert/zipball/b72e2b41b5295be5bae5c54dbab851696fef196a",
+                "reference": "b72e2b41b5295be5bae5c54dbab851696fef196a",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^5.4|^6.0|^7.0",
+                "php": "^7.2"
+            },
+            "require-dev": {
+                "symfony/thanks": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "RealRashid\\SweetAlert\\SweetAlertServiceProvider"
+                    ],
+                    "aliases": {
+                        "Alert": "RealRashid\\SweetAlert\\Facades\\Alert"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "RealRashid\\SweetAlert\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Rashid Ali",
+                    "email": "realrashid05@gmail.com",
+                    "homepage": "https://realrashid.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A BEAUTIFUL, RESPONSIVE, CUSTOMIZABLE, ACCESSIBLE (WAI-ARIA) REPLACEMENT FOR JAVASCRIPT'S POPUP BOXES FOR LARAVEL BY RASHID ALI",
+            "homepage": "https://github.com/realrashid/sweet-alert",
+            "keywords": [
+                "alert",
+                "laravel",
+                "laravel-package",
+                "notifier",
+                "noty",
+                "sweet-alert",
+                "sweet-alert2",
+                "toast"
+            ],
+            "time": "2020-06-11T19:38:31+00:00"
+        },
+        {
             "name": "spomky-labs/base64url",
             "version": "v2.0.1",
             "source": {
@@ -4111,6 +4177,67 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2019-10-24T08:53:34+00:00"
+        },
+        {
+            "name": "tucker-eric/eloquentfilter",
+            "version": "2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Tucker-Eric/EloquentFilter.git",
+                "reference": "1bf140acfa05653e3531469d149b38ad2a672460"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Tucker-Eric/EloquentFilter/zipball/1bf140acfa05653e3531469d149b38ad2a672460",
+                "reference": "1bf140acfa05653e3531469d149b38ad2a672460",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "~5.0|~6.0|~7.0",
+                "illuminate/console": "~5.0|~6.0|~7.0",
+                "illuminate/database": "~5.0|~6.0|~7.0",
+                "illuminate/filesystem": "~5.0|~6.0|~7.0",
+                "illuminate/pagination": "~5.0|~6.0|~7.0",
+                "illuminate/support": "~5.0|~6.0|~7.0",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.5",
+                "phpunit/phpunit": "~5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "EloquentFilter\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "EloquentFilter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eric Tucker",
+                    "email": "tucker.ericm@gmail.com"
+                }
+            ],
+            "description": "An Eloquent way to filter Eloquent Models",
+            "keywords": [
+                "eloquent",
+                "filter",
+                "laravel",
+                "model",
+                "query",
+                "search"
+            ],
+            "time": "2020-03-03T22:30:29+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

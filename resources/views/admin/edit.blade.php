@@ -30,20 +30,16 @@
                     <div class="col-md-6 form-group1">
                         <label class="control-label" for="firstName">{{__('user.first_name')}}</label>
                         <input type="text"name="firstName" id="firstName" class="@error('firstName') is-invalid @enderror" required="" value="{{$user->firstName}}">
-                        @error('firstName')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                        @enderror
+                        @if($errors->has('firstName'))
+                            <div class="text-danger">{{$errors->first('firstName')}}</div>
+                        @endif
                     </div>
                     <div class="col-md-6 form-group1 form-last">
                         <label class="control-label" for="lastName">{{__('user.last_name')}}</label>
                         <input type="text"  class="@error('lastName') is-invalid @enderror" name="lastName" id="lastName" required="" value="{{$user->lastName}}">
-                        @error('lastName')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                        @enderror
+                        @if($errors->has('lastName'))
+                            <div class="text-danger">{{$errors->first('lastName')}}</div>
+                        @endif
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -51,11 +47,9 @@
                 <div class="col-md-12 form-group1 group-mail">
                     <label class="control-label" for="email">{{__('user.email')}}</label>
                     <input type="text" class="@error('email') is-invalid @enderror" name="email" id="email" required="" value="{{$user->email}}">
-                    @error('email')
-                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                    @enderror
+                    @if($errors->has('email'))
+                        <div class="text-danger">{{$errors->first('email')}}</div>
+                    @endif
                 </div>
 
                 <div class="col-md-12 form-group2 group-mail ">

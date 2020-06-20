@@ -18,22 +18,60 @@
                     <div class="mail-toolbar clearfix">
                         <div class="float-left">
                             <div class="btn-group m-r-sm mail-hidden-options" style="display: inline-block;">
-                                <a type="button" href="{{route('loanRequest-create')}}" class="btn btn-primary">{{__('movie.add_new_loanRequest')}}</a>
+                                <a type="button" href="{{route('loanRequest-create')}}" class="btn btn-primary">{{__('loanRequest.add_new_loanRequest')}}</a>
 
                             </div>
 
                         </div>
 
                         <div class="float-right">
-                            {{$loanRequests->links('pagination.pagination')}}
+                            {{$loanRequests->appends(request()->except('page'))->links('pagination.pagination')}}
                         </div>
                     </div>
+                    <!-- filter -->
+                    <div class="mail-toolbar clearfix">
+                        <form action="">
+
+                            <div class="col-md-3 form-group1 group-mail">
+                                <label class="control-label" for="start">{{__('loanRequest.start_date')}}</label>
+                                <input type="date" class="form-control1 ng-invalid ng-invalid-required" name="start" value="{{$request->start}}">
+                            </div>
+
+                            <div class="col-md-3 form-group1 group-mail">
+                                <label class="control-label" for="end">{{__('loanRequest.end_date')}}</label>
+                                <input type="date" class="form-control1 ng-invalid ng-invalid-required" name="end" value="{{$request->end}}">
+                            </div>
+
+                            <div class="col-md-3 form-group2 group-mail ">
+                                <label class="control-label">{{__('loanRequest.status')}}</label>
+                                <select  class="form-control1 ng-invalid ng-invalid-required" name="status">
+                                    <option value="{{\App\LoanRequest::STATUS_CANCEL}}" @if($request->status === \App\LoanRequest::STATUS_CANCEL) selected @endif>{{__('LoanRequest.'.\App\LoanRequest::STATUS_CANCEL)}}</option>
+                                    <option value="{{\App\LoanRequest::STATUS_COMPLETED}}" @if($request->status === \App\LoanRequest::STATUS_COMPLETED) selected @endif>{{__('LoanRequest.'.\App\LoanRequest::STATUS_COMPLETED)}}</option>
+                                    <option value="{{\App\LoanRequest::STATUS_INPROGRESS}}" @if($request->status === \App\LoanRequest::STATUS_INPROGRESS) selected @endif>{{__('LoanRequest.'.\App\LoanRequest::STATUS_INPROGRESS)}}</option>
+                                    <option value="{{\App\LoanRequest::STATUS_OUTSTANDING}}" @if($request->status === \App\LoanRequest::STATUS_OUTSTANDING) selected @endif>{{__('LoanRequest.'.\App\LoanRequest::STATUS_OUTSTANDING)}}</option>
+                                    <option value="{{\App\LoanRequest::STATUS_NEW}}" @if($request->status === \App\LoanRequest::STATUS_NEW) selected @endif>{{__('LoanRequest.'.\App\LoanRequest::STATUS_NEW)}}</option>
+                                    <option value="all" @if($request->status === 'all') selected @endif>{{__('LoanRequest.all')}}</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-3 form-group1 group-mail">
+                                <label class="control-label" for="name">{{__('user.first_name')}}</label>
+                                <input class="form-control1 ng-invalid ng-invalid-required" type="text" name="name" value="{{$request->name}}">
+                            </div>
+                            <div class="float-right">
+                                <button class="btn btn-xs btn-default" href="{{route('loanRequest')}}"> {{__('loanRequest.cancel')}}</button>
+                                <button class="btn btn-xs btn-primary" type="submit"> {{__('loanRequest.filter')}}</button>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- //filter -->
+
                     <table class="table">
                         <tbody>
                         @foreach($loanRequests as $loanRequest)
                             <tr class="table-row">
                                 <td class="table-text">
-                                    <h6>{{$loanRequest->firstName}} {{$loanRequest->lastName}}</h6>
+                                    <h6><a href="{{route('loanRequest-view', ['loanRequest' => $loanRequest])}}">{{$loanRequest->firstName}} {{$loanRequest->lastName}}</a></h6>
                                     <p>{{$loanRequest->start}} - {{$loanRequest->end}}</p>
                                 </td>
                                 <td>

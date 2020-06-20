@@ -12,12 +12,15 @@ class LoanRequestController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
         return view('loanRequest.overview',
-            ['loanRequests' => LoanRequest::orderBy('created_at', 'desc')->paginate(15)
+            [
+                'loanRequests' => LoanRequest::filter($request->all())->orderBy('created_at', 'desc')->paginate(4),
+                'request' => $request
             ]);
     }
 
@@ -34,7 +37,7 @@ class LoanRequestController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function save(Request $request)
@@ -57,25 +60,26 @@ class LoanRequestController extends Controller
 
         event(new NewLoanRequestEvent($loanRequest));
 
-        return redirect(route('loanRequest'));
+        return redirect(route('loanRequest'))->with('toast_success',
+            trans('translate.new_loanRequest_created', ['data' => $loanRequest->email]));
 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\LoanRequest  $loanRequest
+     * @param \App\LoanRequest $loanRequest
      * @return \Illuminate\Http\Response
      */
-    public function show(LoanRequest $loanRequest)
+    public function view(LoanRequest $loanRequest)
     {
-        //
+        return view('loanRequest.view', ['loanRequest' => $loanRequest]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\LoanRequest  $loanRequest
+     * @param \App\LoanRequest $loanRequest
      * @return \Illuminate\Http\Response
      */
     public function edit(LoanRequest $loanRequest)
@@ -86,23 +90,41 @@ class LoanRequestController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\LoanRequest  $loanRequest
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param \App\LoanRequest $loanRequest
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, LoanRequest $loanRequest)
     {
-        //
+
+        if ($request->has('status')) {
+            $validateData = $request->validate([
+                'status' => 'required | string| max:255',
+            ]);
+
+            $loanRequest->update($validateData);
+
+            return redirect()->back()->with('toast_success',
+                trans('translate.status_updated', ['data' => $validateData['status']]));
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\LoanRequest  $loanRequest
+     * @param \App\LoanRequest $loanRequest
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LoanRequest $loanRequest)
+    public function delete(LoanRequest $loanRequest)
     {
-        //
+        $deleteLoanRequest = $loanRequest->email;
+        $loanRequest->delete();
+
+        return redirect()->back();
+    }
+
+    public function filter(Request $request)
+    {
+
     }
 }

@@ -133,6 +133,31 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        'firstName' => [
+            'required' => 'Le champ prénom ne peut pas etre vide.'
+        ],
+        'lastName' => [
+            'required' => 'Le champs nom ne peut pas etre vide.'
+        ],
+        'email' => [
+            'required' => 'Le champs email ne peut pas etre vide.',
+            'email' => 'Veuillez entrer une adresse email valide.'
+        ],
+        'numberOfCopies' => [
+            'required' => 'Le champ nombre de copies ne peut pas être vide.',
+            'numeric' => 'Veuillez entrer une valuer numeric.'
+        ],
+        'filmTitle' => [
+            'required' => 'Le champs titre du film ne peut pas etre vide. '
+        ],
+        'start'=> [
+            'required' => 'Le champs date du debut de l\'emprunt ne peut pas etre vide.',
+        ],
+
+        'end' => [
+            'required' => 'Le champs date de fin de l\'emprunt ne peut pas etre vide.',
+            'after_or_equal' => 'La date de retour, doit être supérieure ou égale à la date du début de l\'emprunt.'
+        ]
     ],
 
     /*

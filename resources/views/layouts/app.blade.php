@@ -21,8 +21,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         function hideURLbar() {
             window.scrollTo(0, 1);
         } </script>
-    <script src="{{asset('js/jquery.metisMenu.js')}}"></script>
-    <script src="{{asset('js/jquery.slimscroll.min.js')}}"></script>
+    <script src="js/jquery.metisMenu.js"></script>
+    <script src="js/jquery.slimscroll.min.js"></script>
 
     <!-- Fonts -->
     <script src="https://kit.fontawesome.com/a8ec0e6e9e.js" crossorigin="anonymous"></script>
@@ -83,7 +83,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <div class="full-left">
 
                 <form class=" navbar-left-right">
-                    <input type="text" id="myInput" placeholder="Search...">
+                    <input type="text" id="myInput" placeholder="Search..." aria-label="Search">
                     <input type="submit" value="" class="fa fa-search">
                 </form>
                 <div class="clearfix"></div>
@@ -164,11 +164,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 </div>
+@include('sweetalert::alert')
 <!--scrolling js-->
-<script src="{{asset('js/jquery.nicescroll.js')}}"></script>
-<script src="{{asset('js/scripts.js')}}"></script>
+<script src="js/jquery.nicescroll.js"></script>
+<script src="js/scripts.js"></script>
 <!--//scrolling js-->
-<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function () {
         $("#myInput").on("keyup", function () {

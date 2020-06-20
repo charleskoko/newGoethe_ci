@@ -14,10 +14,8 @@
             <div class="col-md-4 ">
                 <div class="content-top-1">
                     <div class="col-md-6 top-content">
-                        <h5>Tasks</h5>
-                        <label>8761</label>
-                        <a href="{{route('push')}}" class="btn btn-outline-primary btn-block">Make a Push Notification!</a>
-
+                        <h5>{{__('loanRequest.all')}}</h5>
+                        <label>40</label>
                     </div>
                     <div class="col-md-6 top-content1">
                         <div id="demo-pie-1" class="pie-title-center" data-percent="25"><span
@@ -55,7 +53,7 @@
                                 @foreach($loanRequests as $loanRequest)
                                     <tr class="table-row">
                                         <td class="table-text">
-                                            <h6> {{$loanRequest->firstName}} {{$loanRequest->lastName}}</h6>
+                                            <h6><a href="{{route('loanRequest-view', ['loanRequest' => $loanRequest])}}">{{$loanRequest->firstName}} {{$loanRequest->lastName}}</a></h6>
                                             <p>{{$loanRequest->start}} - {{$loanRequest->end}}</p>
                                         </td>
                                         <td>

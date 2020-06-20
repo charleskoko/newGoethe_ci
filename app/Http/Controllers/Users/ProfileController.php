@@ -53,7 +53,8 @@ class ProfileController extends Controller
 
         $user->update($validatedData);
 
-        return redirect(route('profile-view'));
+        return redirect(route('profile-view'))->with('toast_success',
+        trans('translate.profile_updated'));
 
     }
 }

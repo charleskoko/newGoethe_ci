@@ -1,14 +1,8 @@
-
-<!--
-Author: W3layouts
-Author URL: http://w3layouts.com
-License: Creative Commons Attribution 3.0 Unported
-License URL: http://creativecommons.org/licenses/by/3.0/
--->
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Minimal an Admin Panel Category Flat Bootstrap Responsive Website Template | Signup :: w3layouts</title>
+    <title></title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords" content="Minimal Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
@@ -23,73 +17,107 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <div class="login">
-    <h1><a href="index.html">Minimal </a></h1>
-    <div class="login-bottom">
-        <h2>Register</h2>
-        <div class="vali-form">
-            <div class="col-md-6 form-group1">
-                <label class="control-label" for="firstName">{{__('user.first_name')}}</label>
-                <input type="text" placeholder="Jean" name="firstName" id="firstName" required="">
+    <h1><a>{{__('translate.mediatheque')}}</a></h1>
+    <form method="post" action="{{route('frontend-new-request')}}">
+        @csrf
+        <div class="login-bottom">
+            <h2>{{__('loanRequest.loan_request1')}}</h2>
+            <div class="vali-form">
+                <div class="col-md-6 form-group1">
+                    <label class="control-label" for="firstName">{{__('user.first_name')}} *</label>
+                    <input type="text" placeholder="Jean" name="firstName" id="firstName" value="{{old('firstName')}}"/>
+                    @if($errors->has('firstName'))
+                        <div class="text-danger">{{$errors->first('firstName')}}</div>
+                    @endif
+
+                </div>
+                <div class="col-md-6 form-group1 form-last">
+                    <label class="control-label" for="lastName">{{__('user.last_name')}} *</label>
+                    <input type="text" placeholder="Yves Armand Debordeau" name="lastName" id="lastName" value="{{old('lastName')}}" >
+                    @if($errors->has('lastName'))
+                        <div class="text-danger">{{$errors->first('lastName')}}</div>
+                    @endif
+
+                </div>
+                <div class="clearfix"> </div>
             </div>
-            <div class="col-md-6 form-group1 form-last">
-                <label class="control-label" for="lastName">{{__('user.last_name')}}</label>
-                <input type="text" placeholder="Yves Armand Debordeau" name="lastName" id="lastName" required="">
+            <div class="vali-form">
+                <div class="col-md-6 form-group1">
+                    <label class="control-label" for="email">{{__('user.email')}} *</label>
+                    <input type="text" placeholder="Jean@example.com" name="email" id="email" value="{{old('email')}}" >
+                    @if($errors->has('email'))
+                        <div class="text-danger">{{$errors->first('email')}}</div>
+                    @endif
+                </div>
+                <div class="col-md-6 form-group1 form-last">
+                    <label class="control-label" for="mobile">{{__('user.mobile')}}</label>
+                    <input type="text" placeholder="+225 58741236" name="mobile" id="mobile" value="{{old('mobile')}}">
+                    @if($errors->has('mobile'))
+                        <div class="text-danger">{{$errors->first('mobile')}}</div>
+                    @endif
+                </div>
+                <div class="clearfix"> </div>
             </div>
+
+            <div class="vali-form">
+                <div class="col-md-6 form-group1">
+                    <label class="control-label" for="filmTitle">{{__('loanRequest.film_title')}} *</label>
+                    <input type="text" placeholder="The one" name="filmTitle" id="filmTitle" value="{{old('filmTitle')}}">
+                    @if($errors->has('filmTitle'))
+                        <div class="text-danger">{{$errors->first('filmTitle')}}</div>
+                    @endif
+                </div>
+                <div class="col-md-6 form-group1 form-last">
+                    <label class="control-label" for="numberOfCopies">{{__('loanRequest.Number_of_copies')}} *</label>
+                    <input type="text" placeholder="4" name="numberOfCopies" id="numberOfCopies "  value="{{old('numberOfCopies')}}">
+                    @if($errors->has('numberOfCopies'))
+                        <div class="text-danger">{{$errors->first('numberOfCopies')}}</div>
+                    @endif
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+
+            <div class="vali-form">
+                <div class="col-md-6 form-group1">
+                    <label class="control-label" for="start">{{__('loanRequest.start_date')}} *</label>
+                    <input type="date" name="start" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.date" value="{{old('start')}}" >
+                    @if($errors->has('start'))
+                        <div class="text-danger">{{$errors->first('start')}}</div>
+                    @endif
+                </div>
+                <div class="col-md-6 form-group1 form-last">
+                    <label class="control-label" for="end">{{__('loanRequest.end_date')}} *</label>
+                    <input type="date" name="end" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.date" value="{{old('end')}}">
+                    @if($errors->has('end'))
+                        <div class="text-danger">{{$errors->first('end')}}</div>
+                    @endif
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="radio block"><label>
+                    @if($errors->has('radio'))
+                        <div class="text-danger">{{$errors->first('radio')}} *</div>
+                    @endif
+                    <input type="checkbox" name="radio"> {{__('translate.consentement')}}
+                </label>
+            </div>
+            </a>
+
+            <div class="col-md-6 login-do">
+                <label class="hvr-shutter-in-horizontal login-sub">
+                    <input type="submit" value="Submit">
+                </label>
+            </div>
+
+
             <div class="clearfix"> </div>
         </div>
-        <div class="vali-form">
-            <div class="col-md-6 form-group1">
-                <label class="control-label" for="firstName">{{__('user.email')}}</label>
-                <input type="text" placeholder="Jean@example.com" name="email" id="email" required="">
-            </div>
-            <div class="col-md-6 form-group1 form-last">
-                <label class="control-label" for="lastName">{{__('user.mobile')}}</label>
-                <input type="text" placeholder="+225 58741236" name="mobile" id="mobile" >
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-
-        <div class="vali-form">
-            <div class="col-md-6 form-group1">
-                <label class="control-label" for="firstName">{{__('loanRequest.film_title')}}</label>
-                <input type="text" placeholder="The one" name="filmTitle" id="filmTitle" required="">
-            </div>
-            <div class="col-md-6 form-group1 form-last">
-                <label class="control-label" for="lastName">{{__('loanRequest.number_of_copies')}}</label>
-                <input type="text" placeholder="4" name="numberOfCopies" id="numberOfCopies " required="" >
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-
-        <div class="vali-form">
-            <div class="col-md-6 form-group1">
-                <label class="control-label" for="firstName">{{__('loanRequest.start')}}</label>
-                <input type="date" name="start" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.date" required="">
-            </div>
-            <div class="col-md-6 form-group1 form-last">
-                <label class="control-label" for="lastName">{{__('loanRequest.number_of_copies')}}</label>
-                <input type="date" name="end" class="form-control1 ng-invalid ng-invalid-required" ng-model="model.date" required="">
-            </div>
-            <div class="clearfix"> </div>
-        </div>
-
-        <label class="checkbox1"><input type="checkbox" name="checkbox" ><i> </i>I agree with the terms</label>
-        </a>
-
-        <div class="col-md-6 login-do">
-            <label class="hvr-shutter-in-horizontal login-sub">
-                <input type="submit" value="Submit">
-            </label>
-        </div>
-
-
-        <div class="clearfix"> </div>
-    </div>
+    </form>
 </div>
 <!---->
 <div class="copy-right">
-    <p> &copy; 2016 Minimal. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>	    </div>
-
+    <p> &copy; 2020 <a href="{{route('login')}}" target="_blank">{{__('translate.Administration')}}.</a> All Rights Reserved | Created by <a href="http://w3layouts.com/" target="_blank">K make Web</a> </p>	    </div>
+@include('sweetalert::alert')
 <!---->
 <!--scrolling js-->
 <script src="js/jquery.nicescroll.js"></script>

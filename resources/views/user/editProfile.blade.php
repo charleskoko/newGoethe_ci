@@ -29,48 +29,40 @@
                     <div class="clearfix"></div>
                     <div class="col-md-6 form-group1">
                         <label class="control-label" for="firstName">{{__('user.first_name')}}</label>
-                        <input type="text"name="firstName" id="firstName" class="@error('firstName') is-invalid @enderror" required="" value="{{$user->firstName}}">
-                        @error('firstName')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                        @enderror
+                        <input type="text"name="firstName" id="firstName" required="" value="{{$user->firstName}}">
+                        @if($errors->has('firstName'))
+                            <div class="text-danger">{{$errors->first('firstName')}}</div>
+                        @endif
                     </div>
                     <div class="col-md-6 form-group1 form-last">
                         <label class="control-label" for="lastName">{{__('user.last_name')}}</label>
-                        <input type="text"  class="@error('lastName') is-invalid @enderror" name="lastName" id="lastName" required="" value="{{$user->lastName}}">
-                        @error('lastName')
-                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                        @enderror
+                        <input type="text"  name="lastName" id="lastName" required="" value="{{$user->lastName}}">
+                        @if($errors->has('lastName'))
+                            <div class="text-danger">{{$errors->first('lastName')}}</div>
+                        @endif
                     </div>
                     <div class="clearfix"></div>
                 </div>
 
                 <div class="col-md-12 form-group1 group-mail">
                     <label class="control-label" for="email">{{__('user.email')}}</label>
-                    <input type="text" class="@error('email') is-invalid @enderror" name="email" id="email" required="" value="{{$user->email}}">
-                    @error('email')
-                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                    @enderror
+                    <input type="text"  name="email" id="email" required="" value="{{$user->email}}">
+                    @if($errors->has('email'))
+                        <div class="text-danger">{{$errors->first('email')}}</div>
+                    @endif
                 </div>
 
                 <div class="col-md-12 form-group1 group-mail">
                     <label class="control-label" for="password">{{__('user.password')}}</label>
-                    <input type="password" class="@error('password') is-invalid @enderror" name="password" id="password">
-                    @error('password')
-                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                    @enderror
+                    <input type="password" name="password" id="password">
+                    @if($errors->has('password'))
+                        <div class="text-danger">{{$errors->first('password')}}</div>
+                    @endif
                 </div>
 
                 <div class="col-md-12 form-group1 group-mail">
                     <label class="control-label" for="password_confirmation">{{__('user.password_confirmation')}}</label>
-                    <input type="text" class="@error('password_confirmation') is-invalid @enderror" name="password_confirmation" id="password_confirmation">
+                    <input type="text"  name="password_confirmation" id="password_confirmation">
                     @error('password_confirmation')
                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>

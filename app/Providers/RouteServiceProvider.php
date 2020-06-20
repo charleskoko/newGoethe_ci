@@ -52,6 +52,9 @@ class RouteServiceProvider extends ServiceProvider
         //
         $this->movieRoutes();
         $this->loanRequestRoutes();
+
+        //
+        $this->frontendRoutes();
     }
 
     /**
@@ -125,5 +128,13 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/loanRequest.php'));
+    }
+
+    private function frontendRoutes()
+    {
+        Route::prefix('frontend')
+            ->middleware('web')
+            ->namespace($this->namespace)
+            ->group(base_path('routes/frontEnd.php'));
     }
 }

@@ -4,6 +4,7 @@ Route::group(['middleware' => ['auth']], function (){
     Route::post('/', 'LoanRequest\LoanRequestController@save')->name('loanRequest-save');
     Route::get('/','LoanRequest\LoanRequestController@index')->name('loanRequest');
     Route::get('/{loanRequest}/edit', 'LoanRequest\LoanRequestController@edit')->name('loanRequest-edit');
+    Route::get('/{loanRequest}/view', 'LoanRequest\LoanRequestController@view')->name('loanRequest-view');
     Route::patch('/{loanRequest}', 'LoanRequest\LoanRequestController@update')->name('loanRequest-update');
     Route::delete('/{loanRequest}', 'LoanRequest\LoanRequestController@delete')->name('loanRequest-delete');
 });

@@ -28,4 +28,5 @@ class HomeController extends Controller
             'loanRequests' => LoanRequest::where('status', '=', LoanRequest::STATUS_NEW)->orderBy('created_at', 'desc')->paginate(15)
         ]);
     }
+
 }
